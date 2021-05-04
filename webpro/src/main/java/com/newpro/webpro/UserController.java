@@ -24,6 +24,13 @@ public class UserController {
         //return userRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/{Name}")
+    public List<User> GetUserByName(@PathVariable String Name){
+        return service.getUserByName(Name);
+        //return userRepository.findById(id).orElse(null);
+    }
+
+
     @PostMapping("/")
     public User PostMethodName (@RequestBody User user){
         return service.addUser(user);
@@ -38,4 +45,6 @@ public class UserController {
     public String DeleteUser(@PathVariable String id){
        return service.deleteUser(id);
     }
+
+
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+
+//res -> response
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class App extends React.Component {
         })
       })
   }
+
   submit(evenet, id) {
     console.log(id)
     evenet.preventDefault();
@@ -51,7 +54,8 @@ class App extends React.Component {
         this.componentDidMount();
       })
   }
-  edit(id) {
+
+  edit(id){
     axios.get("http://localhost:8080/api/" + id)
       .then((res) => {
         this.setState({
@@ -62,6 +66,7 @@ class App extends React.Component {
         });
       })
   }
+
   render() {
     return (
       <div className="container">
@@ -120,8 +125,6 @@ class App extends React.Component {
                     </tr>
                   )
                 }
-
-
               </tbody>
             </table>
           </div>
