@@ -11,34 +11,31 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService service;
 
     @GetMapping("/")
     public List<User> GetUsers(){
-        return userRepository.findAll();
+        return service.getUsers();
     }
     @GetMapping("/{id}")
     public User GetUser(@PathVariable String id){
-        return userRepository.findById(id).orElse(null);
+        return service.getUserById(id);
+        //return userRepository.findById(id).orElse(null);
     }
 
     @PostMapping("/")
     public User PostMethodName (@RequestBody User user){
-        return userRepository.save(user);
+        return service.addUser(user);
     }
 
     @PutMapping("/")
     public User PutMapping (@RequestBody User newUser){
-        User oldUser=userRepository.findById(newUser.getId()).orElse(null);
-        oldUser.setName(newUser.getName());
-        oldUser.setEmail(newUser.getEmail());
-        oldUser.setPassword(newUser.getPassword());
-        userRepository.save(oldUser);
-        return oldUser;
+        return service.userUpdate(newUser);
     }
 
     @DeleteMapping("/{id}")
     public String DeleteUser(@PathVariable String id){
-        userRepository.deleteById(id);
-        return id;
+       return service.deleteUser(id);
     }
 }
