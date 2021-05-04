@@ -1,5 +1,7 @@
-package com.newpro.webpro;
+package com.newpro.webpro.service;
 
+import com.newpro.webpro.model.User;
+import com.newpro.webpro.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,15 @@ public class UserService {
     }
 
     public List<User> getUserByName(String Name){
-        return userRepository.findByName(Name);
+        List<User> users = userRepository.findByName(Name);
+        System.out.println("Getting data from DB : " + users);
+        return users;
     }
-    public User getUserById(String Id){
-        return userRepository.findById(Id).orElse(null);
+
+    public User getUserById(String id){
+        return userRepository.findById(id).orElse(null);
     }
+
     public List<User> getUsers() {
         List<User> users = userRepository.findAll();
         System.out.println("Getting data from DB : " + users);

@@ -1,11 +1,14 @@
-package com.newpro.webpro;
+package com.newpro.webpro.controller;
 
+import com.newpro.webpro.model.User;
+import com.newpro.webpro.dao.UserRepository;
+import com.newpro.webpro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/UserInfo")
 @CrossOrigin //allow all the uri to access your data
 public class UserController {
 
@@ -20,16 +23,16 @@ public class UserController {
     }
     @GetMapping("/{id}")
     public User GetUser(@PathVariable String id){
-        return service.getUserById(id);
-        //return userRepository.findById(id).orElse(null);
+        //return service.getUserById(id);
+        return userRepository.findById(id).orElse(null);
     }
-
-    @GetMapping("/{Name}")
+/*
+    @GetMapping("/Name/{Name}")
     public List<User> GetUserByName(@PathVariable String Name){
         return service.getUserByName(Name);
         //return userRepository.findById(id).orElse(null);
     }
-
+*/
 
     @PostMapping("/")
     public User PostMethodName (@RequestBody User user){
@@ -38,6 +41,7 @@ public class UserController {
 
     @PutMapping("/")
     public User PutMapping (@RequestBody User newUser){
+
         return service.userUpdate(newUser);
     }
 
