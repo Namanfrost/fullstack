@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class TodoNotes {
     @Id
     private String id;
-    private String fullname;
-    private String email;
-    private Integer age;
-    private String password;
+    private String title;
+    private String description;
+    private String deadline;
+    private String userId;
 }
