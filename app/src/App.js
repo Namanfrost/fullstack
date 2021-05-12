@@ -8,9 +8,11 @@ class App extends React.Component {
     this.state = {
       users: [],
       id: 0,
-      Name: '',
+      Fullname: '',
       Email: '',
+      Age: 0,
       Password: ''
+
     }
   }
   componentDidMount() {
@@ -19,8 +21,9 @@ class App extends React.Component {
         this.setState({
           users: res.data,
           id: 0,
-          name: '',
+          fullname: '',
           email: '',
+          age: 0,
           password: ''
         })
       })
@@ -31,8 +34,9 @@ class App extends React.Component {
     evenet.preventDefault();
     if (id === 0) {
       axios.post("http://localhost:8080/UserInfo/", {
-        name: this.state.name,
+        fullname: this.state.fullname,
         email: this.state.email,
+        age: this.state.age,
         password: this.state.password
       }).then(() => {
         this.componentDidMount();
@@ -40,8 +44,9 @@ class App extends React.Component {
     } else {
       axios.put("http://localhost:8080/UserInfo/", {
         id: id,
-        name: this.state.name,
+        fullname: this.state.fullname,
         email: this.state.email,
+        age: this.state.age,
         password: this.state.password
       }).then(() => {
         this.componentDidMount();
@@ -55,13 +60,14 @@ class App extends React.Component {
       })
   }
 
-  edit(id){
+  edit(id) {
     axios.get("http://localhost:8080/UserInfo/" + id)
       .then((res) => {
         this.setState({
           id: res.data.id,
-          name: res.data.name,
+          fullname: res.data.fullname,
           email: res.data.email,
+          age: res.data.age,
           password: res.data.password
         });
       })
@@ -69,65 +75,71 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col s6">
-            <form onSubmit={(e) => this.submit(e, this.state.id)}>
-              <div className="input-field col s12">
-                <i className="material-icons prefix">person</i>
-                <input value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} type="text" id="autocomplete-input" className="autocomplete" />
-                <label htmlFor="autocomplete-input">Enter Name</label>
-              </div>
-              <div className="input-field col s12">
-                <i className="material-icons prefix">mail</i>
-                <input value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} type="email" id="autocomplete-input" className="autocomplete" />
-                <label htmlFor="autocomplete-input">Enter Email</label>
-              </div>
-              <div className="input-field col s12">
-                <i className="material-icons prefix">vpn_key</i>
-                <input value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} type="password" id="autocomplete-input" className="autocomplete" />
-                <label htmlFor="autocomplete-input">Enter Password</label>
-              </div>
-              <button className="btn waves-effect waves-light right" type="submit" name="action">Submit
-                    <i className="material-icons right">send</i>
-              </button>
-            </form>
-          </div>
-          <div className="col s6">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
+      <div id="main" >
 
-              <tbody>
-                {
-                  this.state.users.map(user =>
-                    <tr key={user.id}>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>{user.password}</td>
-                      <td>
-                        <button onClick={(e) => this.edit(user.id)} className="btn waves-effect waves-light" type="submit" name="action">
-                          <i className="material-icons ">edit</i>
-                        </button>
-                      </td>
-                      <td>
-                        <button onClick={(e) => this.delete(user.id)} className="btn waves-effect waves-light " type="submit" name="action">
-                          <i className="material-icons ">delete</i>
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                }
-              </tbody>
-            </table>
+
+        <form id="add-book" onSubmit={(e) => this.submit(e, this.state.id)}>
+
+          <div className="field">
+            <label htmlFor="autocomplete-input">Enter Fullname</label>
+            <input value={this.state.fullname} onChange={(e) => this.setState({ fullname: e.target.value })} type="text" id="autocomplete-input" className="autocomplete" />
           </div>
+
+          <div className="field">
+            <label htmlFor="autocomplete-input">Enter Email</label>
+            <input value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} type="email" id="autocomplete-input" className="autocomplete" />
+          </div>
+
+          <div className="field">
+            <label htmlFor="autocomplete-input">Enter Age</label>
+            <input value={this.state.age} onChange={(e) => this.setState({ age: e.target.value })} type="number" id="autocomplete-input" className="autocomplete" />
+          </div>
+
+          <div className="field">
+            <label htmlFor="autocomplete-input">Enter Password</label>
+            <input value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} type="password" id="autocomplete-input" className="autocomplete" />
+          </div>
+
+          <button >Submit</button>
+
+        </form>
+
+
+        <div >
+          <h1>All Current Members</h1>
+          <table>
+            <thead>
+              <tr >
+                <th >Fullname</th>
+                <th >Email</th>
+                <th > Age </th>
+                <th >Password</th>
+                <th >Edit</th>
+                <th >Delete</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {
+                this.state.users.map(user =>
+                  <tr key={user.id}>
+                    <td>{user.fullname}</td>
+                    <td>{user.email}</td>
+                    <td>{user.age}</td>
+                    <td>{user.password}</td>
+                    <td>
+                      <button onClick={(e) => this.edit(user.id)} type="submit" name="action">
+                        Edit</button>
+                    </td>
+                    <td>
+                      <button onClick={(e) => this.delete(user.id)} type="submit" name="action">
+                        Delete</button>
+                    </td>
+                  </tr>
+                )
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     );

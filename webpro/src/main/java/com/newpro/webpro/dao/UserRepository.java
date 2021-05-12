@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface UserRepository extends MongoRepository<User,String> {
-    List<User> findByName(String Name);
+    List<User> findByFullnameStartingWith(String Fullname);
 }
+
+//mongo repository already have predefine curd opretion
