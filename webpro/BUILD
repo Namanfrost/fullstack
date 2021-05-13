@@ -7,6 +7,7 @@ java_binary(
                 "@maven//:org_springframework_boot_spring_boot_autoconfigure",
                  "@maven//:io_springfox_springfox_swagger2",
                  "@maven//:org_springframework_boot_spring_boot"
+
             ],
 )
 
