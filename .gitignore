@@ -46,6 +46,11 @@ webpro/*.iml
 webpro/*.ipr
 .idea
 
+### Bazel ###
+webpro/bazel-bin
+webpro/bazel-out
+webpro/bazel-testlogs
+webpro/bazel-webpro
 
 ### VS Code ###
 webpro/.vscode/
