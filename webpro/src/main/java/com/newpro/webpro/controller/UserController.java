@@ -4,6 +4,7 @@ import com.newpro.webpro.model.TodoNotes;
 import com.newpro.webpro.model.User;
 import com.newpro.webpro.dao.UserRepository;
 import com.newpro.webpro.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -63,6 +64,5 @@ public class UserController {
         return service.getUsersByPage(pageNo , pageSize,sortBy);
         //return userRepository.findById(id).orElse(null);
     }
-
 
 }

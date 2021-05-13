@@ -4,6 +4,7 @@ import com.newpro.webpro.dao.TodoNotesRepository;
 import com.newpro.webpro.model.TodoNotes;
 import com.newpro.webpro.model.User;
 import com.newpro.webpro.dao.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
