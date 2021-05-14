@@ -12,7 +12,4 @@ public class WebproApplication    {
 
 		SpringApplication.run(WebproApplication.class, args);
 	}
-
-
-
 }
