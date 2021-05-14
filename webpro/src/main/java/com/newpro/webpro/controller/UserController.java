@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/UserInfo")
-@CrossOrigin(origins = "*", maxAge = 3600) //allow all the uri to access your data
+@CrossOrigin //allow all the uri to access your data
 public class UserController {
 
     @Autowired

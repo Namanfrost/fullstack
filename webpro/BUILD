@@ -4,6 +4,7 @@ java_binary(
     runtime_deps = [
                 ":module",
                 "@maven//:org_springframework_boot_spring_boot_starter_web",
+                "@maven//:org_springframework_boot_spring_boot_starter_data_mongodb",
             ],
 )
 

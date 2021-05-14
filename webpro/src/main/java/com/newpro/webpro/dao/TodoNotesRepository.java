@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-
 public interface TodoNotesRepository extends MongoRepository<TodoNotes,String> {
     public List<TodoNotes> findByUserId(String userId);
 }
