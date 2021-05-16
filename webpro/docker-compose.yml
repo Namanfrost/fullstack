@@ -1,0 +1,23 @@
+version: "3.8"
+
+networks:
+  backend:
+    external: false
+    name: backend
+services:
+  mongo:
+    networks:
+      - backend
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+  webpro:
+    networks:
+      - backend
+    image: webpro
+    container_name: webpro
+    ports:
+      - 8080:8080
+    links:
+      - mongo
