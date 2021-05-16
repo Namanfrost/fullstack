@@ -40,11 +40,6 @@ public class UserController {
         return service.addUser(user);
     }
 
-    @PostMapping("/todo")
-    public TodoNotes PostTodo (@RequestBody TodoNotes todo){
-        return service.addTodo(todo);
-    }
-
     @PutMapping("/")
     public User PutMapping (@RequestBody User newUser){
 
@@ -63,6 +58,16 @@ public class UserController {
     ){
         return service.getUsersByPage(pageNo , pageSize,sortBy);
         //return userRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/todo")
+    public List<TodoNotes> GetTodos(){
+        return service.getTodos();
+    }
+
+    @PostMapping("/todo")
+    public TodoNotes PostTodo(@RequestBody TodoNotes todo){
+        return service.addTodo(todo);
     }
 
 }

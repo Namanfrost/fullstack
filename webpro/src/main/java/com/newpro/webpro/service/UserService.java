@@ -73,4 +73,9 @@ public class UserService {
         todoNotesRepository.save(todo);
         return todo;
     }
+
+    public List<TodoNotes> getTodos() {
+        List<TodoNotes> todos = todoNotesRepository.findAll();
+        return todos;
+    }
 }

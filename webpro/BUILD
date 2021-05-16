@@ -5,7 +5,11 @@ java_binary(
                 ":module",
                 "@maven//:org_springframework_boot_spring_boot_starter_web",
                 "@maven//:org_springframework_boot_spring_boot_starter_data_mongodb",
+                "@maven//:io_springfox_springfox_swagger2",
+                "@maven//:org_springframework_spring_beans",
+                "@maven//:org_springframework_spring_web",
             ],
+    resources = glob(["src/main/resources/**"]),
 )
 
 java_library(

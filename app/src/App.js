@@ -15,8 +15,10 @@ class App extends React.Component {
 
     }
   }
+
+  //componentDidMount React hook gets invoked right after a React component has been mounted aka after the first render() lifecycle.
   componentDidMount() {
-    axios.get("http://localhost:8080/UserInfo/")
+    axios.get("http://localhost:8080/UserInfo/")  // Axios is used to make HTTP requests to fetch or save data
       .then((res) => {
         this.setState({
           users: res.data,
@@ -29,9 +31,9 @@ class App extends React.Component {
       })
   }
 
-  submit(evenet, id) {
+  submit(event, id) {
     console.log(id)
-    evenet.preventDefault();
+    event.preventDefault();
     if (id === 0) {
       axios.post("http://localhost:8080/UserInfo/", {
         fullname: this.state.fullname,
@@ -53,6 +55,8 @@ class App extends React.Component {
       })
     }
   }
+
+
   delete(id) {
     axios.delete("http://localhost:8080/UserInfo/" + id)
       .then(() => {
